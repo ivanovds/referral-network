@@ -5,9 +5,10 @@ It contains the essential fields and behaviors of the data you’re storing.
 Generally, each model maps to a single database table.
 """
 
-
 from django.db import models
 from django.contrib.auth.models import User
+import random
+import string
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -48,22 +49,46 @@ class Profile(models.Model):
     width_field = models.IntegerField(default=0)
     height_field = models.IntegerField(default=0)
 
+    ref_code = models.TextField(max_length=20, null=False, unique=True)
+
     def get_absolute_url(self):
         return "/profiles/%i/" % self.id
 
     def __str__(self):
-        return self.bio
+        return self.user.username
 
     class Meta:
         ordering = ["-timestamp"]
 
 
+class Referral(models.Model):
+    referrer = models.ManyToManyField(User, related_name='referrers')
+    referral = models.ManyToManyField(User, related_name='referrals')
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.referrer.username} - {self.referral.username}'
+
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        ref_code = generate_ref_code()
+        while Profile.objects.filter(ref_code=ref_code).exists():
+            ref_code = generate_ref_code()
+        Profile.objects.create(
+            user=instance,
+            ref_code=ref_code,
+        )
 
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+
+def generate_ref_code(ref_code_length=15):
+    lettersAndDigits = string.ascii_lowercase + string.digits
+    return ''.join(random.choice(lettersAndDigits) for i in range(ref_code_length))
+
+

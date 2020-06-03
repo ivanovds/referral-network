@@ -81,7 +81,6 @@ def login_register_view(request):
             user = User(username=username, email=email)
             user.set_password(password)
             user.save()
-            # user = authenticate(email=email, password=password)
             login(request, user)
             return redirect('/home')
 

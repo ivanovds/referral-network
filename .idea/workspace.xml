@@ -7,15 +7,24 @@
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cee86654-a176-42d6-808e-77d1dfba2424" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profiles/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/migrations/0002_auto_20200603_0324.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/migrations/0003_auto_20200603_0339.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/migrations/0004_auto_20200603_0516.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/migrations/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/profiles/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profiles/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/profiles/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,9 +39,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Python Script" />
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -55,6 +64,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -63,17 +73,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\static\js" />
+      <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\static\css" />
+      <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\static" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Work\test-tasks\referral_network\templates" />
       <recent name="D:\Users\Danya\Work\REST_API\project-container\accounts" />
       <recent name="D:\Users\Danya\Work\REST_API\project-container\media" />
       <recent name="D:\Users\Danya\Work\REST_API\project-container\posts" />
       <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\chart\migrations" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\static\js" />
-      <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\static\css" />
-      <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\static" />
     </key>
   </component>
   <component name="RunManager">
@@ -141,6 +151,7 @@
       <workItem from="1587139706350" duration="2802000" />
       <workItem from="1587200932662" duration="14655000" />
       <workItem from="1591133810524" duration="17289000" />
+      <workItem from="1591221939603" duration="5237000" />
     </task>
     <servers />
   </component>
@@ -155,19 +166,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="registration" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -204,66 +203,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="845" y="383" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1591150932016" />
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591150906646">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591226654941">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591150906646" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591226654941" />
     <state x="719" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586780709212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="719" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1586780709212" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591136005345">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591226301778">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591136005345" />
-    <state x="679" y="127" key="#project" timestamp="1582494575737">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591226301778" />
+    <state x="264" y="230" key="FileChooserDialogImpl" timestamp="1591226651870">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="679" y="127" key="#project/0.0.1920.1040@0.0.1920.1040" timestamp="1582494575737" />
-    <state x="694" y="282" key="EnvironmentVariablesDialog" timestamp="1582494710789">
+    <state x="264" y="230" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591226651870" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1591226526574">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="694" y="282" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582494710789" />
-    <state x="264" y="230" key="FileChooserDialogImpl" timestamp="1586680666718">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="264" y="230" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586680666718" />
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1582495355177">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582495355177" />
-    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1582495355177">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582495355177" />
-    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1582495355177">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582495355177" />
-    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1582495355177">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582495355177" />
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1582495355177">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582495355177" />
-    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1582495355177">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582495355177" />
-    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1582495355177">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582495355177" />
-    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1582495355177">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582495355177" />
-    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1591150921878">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1040@0.0.1920.1040" timestamp="1591150921878" />
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1040@0.0.1920.1040" timestamp="1591226526574" />
     <state x="540" y="255" key="IDE.errors.dialog" timestamp="1591151499338">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -272,22 +231,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="428" y="252" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1591141661288" />
-    <state x="842" y="410" width="326" height="254" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1582502946034">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="842" y="410" width="326" height="254" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1920.1040@0.0.1920.1040" timestamp="1582502946034" />
-    <state x="676" y="161" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1582503217929">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="676" y="161" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582503217929" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1587200934998">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587200934998" />
-    <state x="656" y="118" width="737" height="804" key="find.popup" timestamp="1591153734375">
+    <state x="656" y="118" width="737" height="804" key="find.popup" timestamp="1591227248948">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="118" width="737" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591153734375" />
+    <state x="656" y="118" width="737" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591227248948" />
     <state x="738" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1582728577427">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
