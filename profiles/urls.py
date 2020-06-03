@@ -21,14 +21,14 @@ from profiles.views import (
     profile_detail,
     login_register_view,
     logout_view,
-    your_profile,
+    home_view,
     )
 
 
 urlpatterns = [
     path('', login_register_view, name='login-register'),
     path('logout/', logout_view, name='logout'),
-    path('home/', your_profile, name='home'),
+    path('home/', home_view, name='home'),
     path('profiles/', profile_list, name='list'),
     path('profiles/<int:profile_id>/', profile_detail, name='detail'),
 ]

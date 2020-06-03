@@ -1,7 +1,9 @@
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import (
     authenticate,
@@ -14,6 +16,7 @@ from django.shortcuts import render, redirect
 from .forms import UserRegisterForm, LoginForm
 
 
+@login_required()
 def profile_list(request):
     queryset_list = Profile.objects.filter(~Q(user=request.user))
 
@@ -36,6 +39,7 @@ def profile_list(request):
     return render(request, "profile_list.html", context)
 
 
+@login_required()
 def profile_detail(request, profile_id):
     instance = get_object_or_404(Profile, id=profile_id)
     # if instance.publish > timezone.now().date():
@@ -47,7 +51,8 @@ def profile_detail(request, profile_id):
     return render(request, "profile_detail.html", context)
 
 
-def your_profile(request):
+@login_required()
+def home_view(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST or None, request.FILES or None)
 
@@ -63,23 +68,27 @@ def your_profile(request):
     context = {
         "form": form,
     }
-    return render(request, "your_profile.html", context)
+    return render(request, "home_view.html", context)
 
 
 def login_register_view(request):
     if request.method == 'POST':
         sign_up_form = UserRegisterForm(request.POST or None)
         if sign_up_form.is_valid():
-            sign_up_form.save()
-            username = sign_up_form.cleaned_data.get('username')
+            email = sign_up_form.cleaned_data.get('email')
             password = sign_up_form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
+            username = (email.lower()).split("@")[0]
+            user = User(username=username, email=email)
+            user.set_password(password)
+            user.save()
+            # user = authenticate(email=email, password=password)
             login(request, user)
-            return redirect('/profiles')
+            return redirect('/home')
 
         log_in_form = LoginForm(request.POST or None)
         if log_in_form.is_valid():
-            username = log_in_form.cleaned_data.get('username')
+            email = log_in_form.cleaned_data.get('email')
+            username = User.objects.get(email=email.lower()).username
             password = log_in_form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
@@ -101,6 +110,7 @@ def login_register_view(request):
     return render(request, 'login_register.html', context)
 
 
+@login_required()
 def logout_view(request):
     logout(request)
     return redirect('/')
