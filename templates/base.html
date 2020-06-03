@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Social Network</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Reset CSS File -->
+  <link  rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
+
+    <!-- Bootstrap Stylesheets -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Main Stylesheet File -->
+  <link  rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <!-- Icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+
+<div class="container-fluid bg-blue">
+        <div class="container bg-blue">
+            <nav class="navbar navbar-expand ">
+
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                      {% if user.is_authenticated %}
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home'%}">Home</a>
+                     </li>
+                      {% endif %}
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'list'%}">Profiles</a>
+                     </li>
+                  </ul>
+                   {% if user.is_authenticated %}
+                  <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                        <a class="nav-link disabled username">{{ user.username }}</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+                      </li>
+                 </ul>
+                  {% else %}
+                       <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login-register'%}">Login/Register</a>
+                            </li>
+                        </ul>
+                  {% endif %}
+              </div>
+            </nav>
+        </div>
+    </div>
+
+{% block content %}{% endblock content %}
+
+
+{# ----------- React.js ----------- #}
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+{# ----------- React-components ----------- #}
+  <script src="{% static 'js/like_dislike.js' %}"></script>
+
+</body>
+</html>

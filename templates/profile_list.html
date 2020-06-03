@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+
+{% for obj in object_list %}
+
+    <div class="row justify-content-center">
+      <div class="col-auto ">
+          <div class="post-preview-block">
+              <div class="row justify-content-between post-preview-txt">
+                  <div class="col-auto author">{{ obj.user.username }}</div>
+              </div>
+              <div class="post-preview-txt">{{ obj.content|linebreaks|truncatechars:320 }}</div>
+              {% if obj.image %}
+              <a href='{{ obj.get_absolute_url }}'><img src='{{ obj.image.url }}' class='post-picture' /></a>
+              {% endif %}
+
+
+                  <div class="likes-amount"><img src="{% static 'img/likes-amount.png' %}" alt="">
+                      <p>10k</p>
+                  </div>
+                  <div class="post-btn-block">
+                        {# React-component #}
+                      <div class="like_dislike_container" data-commentid={{  obj.id }}></div>
+                  </div>
+              </div>
+
+
+
+      </div>
+    </div>
+
+{% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?{{ page_request_var }}={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+</div>
+
+{% endblock content %}

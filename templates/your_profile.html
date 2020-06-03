@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-12 ">
+            <div class="post-form-container">
+                <div class="post-form-title">
+                    <span>Update your profile</span>
+                </div>
+                <form class='post-form ' method='POST' enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    {{form|safe}}
+                    <label class="label_img" for="id_image">Photo</label>
+                    <input type='submit' id="saveButton" value="Post">
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

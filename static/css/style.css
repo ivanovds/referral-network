@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    background-color: rgb(233,235,238);
+}
+
+*:focus {
+   outline: none;
+}
+.padding-reset{
+    padding: 0;
+}
+
+
+.bg-blue{
+    background-color: rgb(66,103,178);
+}
+
+.navbar a{
+    color: white;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.navbar .username{
+    color: rgb(1,17,55);
+
+}
+
+/*--------------------Home page----------------------*/
+
+/*Post creation form*/
+.post-form-container {
+    padding-bottom: 10px;
+    width: 500px;
+    text-align: center;
+    background-color: white;
+    margin: 10px auto;
+    border-radius: 4px;
+    border: 1px solid rgba(110, 112, 115, 0.25);
+}
+
+.post-form-container .post-form-title{
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+    background-color: rgb(245,246,247);
+    border-bottom: 1px inset rgb(233,235,238);
+    margin-bottom: 5px;
+}
+
+.post-form-container  .post-form{
+    margin: 0px 10px
+}
+
+.post-form-container  .post-form input, textarea{
+    outline: none;
+	-moz-appearance: none;
+	border: white;
+    border-bottom: 1px inset rgb(233,235,238);
+    width: 100%;
+    background-color: white;
+}
+
+.post-form-container .post-form #saveButton{
+    font-size: 14px;
+    padding: 2px 0px;
+    background-color: rgb(156,180,216);
+    color: white;
+    border-radius: 3px;
+}
+
+.post-form-container .post-form #saveButton:hover{
+    background-color: rgb(66,103,178);
+}
+
+.post-form-container .post-form #id_image{
+    display: none;
+}
+
+.post-form-container .post-form #id_publish{
+    max-width: 154px;
+    background-color: rgb(245,246,247);
+    border-radius: 15px;
+    padding-left: 7px;
+    height: 27px;
+}
+
+.post-form-container .post-form label{
+    display: none;
+}
+.post-form-container .post-form .label_img{
+    display: block;
+    width: 100px;
+    float: left;
+    border-radius: 15px;
+    margin-bottom: 7px;
+    background-color: rgb(245,246,247);
+    height: 27px;
+    line-height: 27px;
+}
+
+.post-form-container .post-form .label_img:hover{
+    cursor: pointer;
+}
+
+
+.post-form-container  .post-form .error{
+    color: crimson;
+}
+
+.post-form-container  .post-form .success{
+    color: forestgreen;
+}
+
+/*List of profiles*/
+.post-preview-block{
+    border: 1px solid rgba(110, 112, 115, 0.25);
+    background-color: white;
+    width: 500px;
+    margin: 7px 0px;
+    border-radius: 4px;
+    padding-top: 5px;
+}
+
+.post-preview-block .likes-amount{
+    margin: 0px 10px;
+    border-bottom: 1px solid rgb(233,235,238);
+    padding: 10px 0px;
+}
+
+.post-preview-block .likes-amount p{
+    height: 20px;
+    line-height: 20px;
+    font-weight: 300;
+}
+ .post-preview-block .likes-amount img{
+    height: 20px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 3px;
+}
+
+.post-preview-block .post-btn-block{
+    padding: 3px 25px;
+    text-align: center;
+}
+
+.post-preview-block .post-btn-block .like_dislike_container button{
+    text-decoration: none;
+    color: rgb(84, 86, 89);
+    border: none;
+    width: 100%;
+    background-color: white;
+    border-radius: 2px;
+    padding: 5px 0px;
+}
+
+.post-preview-block .post-btn-block  .like_dislike_container button:hover{
+    background-color: rgb(237, 239, 242);
+    cursor: pointer;
+}
+
+.post-preview-block .post-btn-block .post-btn-pressed{
+    color: rgb(64,128,255);
+}
+
+.post-preview-block .post-btn-block .post-btn-disliked{
+
+}
+
+.post-preview-block .post-btn-block i{
+    padding-right: 10px;
+}
+
+ .post-preview-block .post-preview-txt{
+    padding: 0px 10px;
+    text-align: justify;
+}
+
+
+ .post-preview-block .author, .post-detail-container .author{
+    font-weight: 700;
+    color: rgb(66,103,178);
+}
+
+
+.post-preview-block .publish-date{
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.post-preview-block .post-picture{
+    border-top: 1px outset rgba(233,235,238,0.7);
+    border-bottom: 1px inset rgba(233,235,238,0.7);
+    width: 100%;
+    height: auto;
+    margin-top: 5px;
+}
+
+.step-links{
+    width: 500px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+/*------------------------ Post detail --------------------------*/
+
+.post-detail-container img, p{
+    max-width: 1120px;
+}
+
+.post-detail-container .p_img{
+    text-align: center;
+}
+
+.post-detail-container .post-detail-content{
+    background-color: white;
+    padding: 10px 10px;
+    border-radius: 4px;
+    margin: 15px 0px;
+}
+
+.post-detail-container .post-detail-content img{
+    margin-bottom: 10px;
+}
+
+/*------------------------ Home page --------------------------*/
+.account-forms-container {
+    text-align: center;
+    padding-top: 35px;
+}
+
+.account-forms-container span{
+    font-weight: 900;
+    font-size: 27px;
+}
+
+.account-forms-container label{
+    display: none;
+}
+.account-forms-container input{
+    outline: none;
+	-moz-appearance: none;
+    border: 1px inset white;
+    width: 100%;
+    border-radius: 6px;
+    background-color: rgb(233,235,238);
+    font-size: 18px;
+    padding-left: 3px;
+    margin-top: 10px;
+}
+.account-forms-container .log-in-form, .account-forms-container .register-form{
+    margin: 0 auto;
+    width: 200px;
+    padding-bottom: 35px;
+}
+
+.account-forms-container #log-in-button, .account-forms-container #sign-up-button{
+    border: 1px outset black;
+    color: white;
+    font-weight: 700;
+    padding: 2px 0px;
+}
+.account-forms-container #log-in-button{
+    background-color: rgb(66,103,178);
+}
+
+.account-forms-container #sign-up-button{
+    background-color: rgb(91,145,71);
+}
