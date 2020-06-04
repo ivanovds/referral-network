@@ -12,6 +12,7 @@ from .models import Profile
 
 
 class ProfileForm(forms.ModelForm):
+    image = forms.ImageField(required=False, widget=forms.FileInput)
 
     class Meta:
         """Provides metadata to the ModelForm class"""

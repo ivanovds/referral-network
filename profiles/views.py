@@ -123,19 +123,18 @@ def profile_detail(request, profile_id):
 
 @login_required()
 def home_view(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST or None, request.FILES or None)
+    profile = get_object_or_404(Profile, id=request.user.id)
 
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.user = request.user
-            instance.save()
-            messages.success(request, "Successfully Created")
-            return redirect(instance.get_absolute_url())
-    else:
-        form = ProfileForm()
+    form = ProfileForm(request.POST or None, request.FILES or None, instance=profile)
+
+    if form.is_valid():
+        profile = form.save()
+
+        messages.success(request, "Successfully Updated")
+        return redirect('/')
 
     context = {
         "form": form,
+        "instance": profile,
     }
     return render(request, "home_view.html", context)

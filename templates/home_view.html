@@ -7,20 +7,26 @@
 
     <div class="row">
         <div class="col-12 ">
-            <div class="post-form-container">
-                <div class="post-form-title">
+            <div class="profile-form-container">
+                <div class="profile-form-title">
                     <span>Update your profile</span>
                 </div>
-                <form class='post-form ' method='POST' enctype='multipart/form-data'>
+                <form class='profile-form ' method='POST' enctype='multipart/form-data'>
                     {% csrf_token %}
-                    {{form|safe}}
-                    <label class="label_img" for="id_image">Photo</label>
-                    <input type='submit' id="saveButton" value="Post">
+                    {{form.bio}}
+                    <label class="label_img" for="id_image">Add photos</label>
+                    {{form.image}}
+{#                    <label class="label_profession" for="id_profession">Profession:</label>#}
+                    {{form.profession}}
+                    <input type='submit' id="saveButton" value="Update profile">
                 </form>
 
             </div>
         </div>
     </div>
+
+    <div class="profile-looks-header"><p>Your profile looks like:</p></div>
+    {% include 'profile_component.html' %}
 
 </div>
 

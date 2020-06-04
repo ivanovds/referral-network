@@ -6,7 +6,11 @@ from .models import Referral
 
 @login_required()
 def referral_view(request):
-
-    context = {}
+    ref_list = Referral.objects.filter(referrer=request.user)
+    ref_count = ref_list.count()
+    context = {
+        'ref_count': ref_count,
+        'ref_list': ref_list,
+    }
     return render(request, "referrals.html", context)
 

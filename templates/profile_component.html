@@ -1,0 +1,21 @@
+<div class="profile-detail-container">
+    <div class="row justify-content-center">
+        <div class='col-auto padding-reset  profile-detail-content'>
+            <div class="row justify-content-start profile-preview-txt">
+              <div class="col-auto author">{{ instance.user.username }}</div>
+            </div>
+            {% if instance.image %}
+                <p class="p_img"><img src='{{ instance.image.url }}' class='img-responsive'/></p>
+            {% endif %}
+
+        <div class="row justify-content-start profile-info">
+            {% if  instance.profession %}
+                <div class="col-12"><span>Profession:</span> {{ instance.profession }}</div>
+            {% endif %}
+            {% if  instance.bio %}
+                <div class="col-12 "><p><span>About me:</span> {{ instance.bio|linebreaks }}</p></div>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+</div>

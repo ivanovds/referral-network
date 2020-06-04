@@ -18,12 +18,14 @@ def upload_location(instance, filename):
 
 
 class Profile(models.Model):
+    BLANK = ''
     STUDENT = 'ST'
     PROGRAMMER = 'PR'
     ENGINEER = 'EN'
     ML_ENGINEER = 'ML'
     OTHER = 'OR'
     PROFESSION_CHOICES = [
+        (BLANK, 'Your profession?'),
         (STUDENT, 'Student'),
         (PROGRAMMER, 'Programmer'),
         (ENGINEER, 'Engineer'),

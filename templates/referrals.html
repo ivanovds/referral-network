@@ -7,12 +7,34 @@
 
     <div class="row justify-content-center">
         <div class="col-auto ">
-{#            <p>Your referral link</p>#}
-            <p><a href="http://127.0.0.1:8000/signup?ref={{  }}">Your referral link</a></p>
+            <div class="invite-block">
+                <p>Invite your friends! </p>
+                <p>You can copy default invitation or edit it.</p>
+<textarea class="invite-text" rows="4" cols="30">Hi!
+Start using the best social network in the world!
+Join via this link and get some bonuses:
+http://127.0.0.1:8000/signup?ref={{ user.profile.ref_code }}</textarea>
+                <button class="copy-invite">Copy invitation</button>
+            </div>
+
+        <div class="referral-list">
+            {% if not ref_count %}
+            <p>You don`t have referrals yet. Invite your friends!</p>
+            {% else %}
+            <p>You have <b>{{ ref_count }}</b> referral(s) joined via your referral link:</p>
+                <ul>
+                {% for ref in ref_list %}
+                        <li><a href="http://127.0.0.1:8000/profiles/{{ ref.referral.id }}">{{ ref.referral }}</a></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
 
         </div>
     </div>
 
 </div>
+
+<script src="{% static 'js/copy_invite.js' %}"></script>
 
 {% endblock content %}

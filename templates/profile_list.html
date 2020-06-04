@@ -9,22 +9,18 @@
 
     <div class="row justify-content-center">
       <div class="col-auto ">
-          <div class="post-preview-block">
-              <div class="row justify-content-between post-preview-txt">
+          <div class="profile-preview-block">
+              <div class="row justify-content-between profile-preview-txt">
                   <div class="col-auto author">{{ obj.user.username }}</div>
               </div>
-              <div class="post-preview-txt">{{ obj.content|linebreaks|truncatechars:320 }}</div>
+              <div class="profile-preview-txt">{{ obj.content|linebreaks|truncatechars:320 }}</div>
               {% if obj.image %}
-              <a href='{{ obj.get_absolute_url }}'><img src='{{ obj.image.url }}' class='post-picture' /></a>
+              <a href='{{ obj.get_absolute_url }}'><img src='{{ obj.image.url }}' class='profile-picture' /></a>
               {% endif %}
 
 
-                  <div class="likes-amount"><img src="{% static 'img/likes-amount.png' %}" alt="">
-                      <p>10k</p>
-                  </div>
-                  <div class="post-btn-block">
-                        {# React-component #}
-                      <div class="like_dislike_container" data-commentid={{  obj.id }}></div>
+                  <div class="profile-btn-block">
+
                   </div>
               </div>
 
