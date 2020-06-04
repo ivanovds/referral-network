@@ -4,17 +4,7 @@
 
 {% block content %}
         <div class="container account-forms-container">
-          <div class="row justify-content-around">
-                {% if not user.is_authenticated %}
-                  <div class="col-auto">
-                        <span>Already have an Account?</span>
-                      <form class='log-in-form ' method='POST' autocomplete="off">
-                          {% csrf_token %}
-                          {{ log_in_form|safe }}
-                          <input type='submit' id="log-in-button" value="Log in">
-                      </form>
-                  </div>
-                {% endif %}
+          <div class="row justify-content-center">
 
                   <div class="col-auto ">
                         <span>Create new Account</span>

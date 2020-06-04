@@ -71,7 +71,7 @@ def home_view(request):
     return render(request, "home_view.html", context)
 
 
-def login_register_view(request):
+def register_view(request):
     if request.method == 'POST':
         sign_up_form = UserRegisterForm(request.POST or None)
         if sign_up_form.is_valid():
@@ -82,8 +82,24 @@ def login_register_view(request):
             user.set_password(password)
             user.save()
             login(request, user)
-            return redirect('/home')
+            return redirect('/')
 
+    else:
+        sign_up_form = UserRegisterForm()
+        ref_code = request.GET.get('ref', 'no code')
+        if Profile.objects.filter(ref_code=ref_code).exists():
+            request.session['ref_code'] = ref_code
+
+        print(request.session['ref_code'])
+
+    context = {
+        'sign_up_form': sign_up_form,
+    }
+    return render(request, 'register.html', context)
+
+
+def login_view(request):
+    if request.method == 'POST':
         log_in_form = LoginForm(request.POST or None)
         if log_in_form.is_valid():
             email = log_in_form.cleaned_data.get('email')
@@ -92,21 +108,20 @@ def login_register_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('/profiles')
+                return redirect('/')
             else:
                 #  TODO: invalid login or password message
                 pass
-
     else:
-        sign_up_form = UserRegisterForm()
         log_in_form = LoginForm()
 
-    context = {
-        'sign_up_form': sign_up_form,
-        'log_in_form': log_in_form,
+        print(request.session['ref_code'])
 
+    context = {
+        'log_in_form': log_in_form,
     }
-    return render(request, 'login_register.html', context)
+
+    return render(request, 'login.html', context)
 
 
 @login_required()

@@ -8,10 +8,10 @@ and get a feel for whether you have the right data.
 
 
 from django.contrib import admin
-from .models import Profile
+from .models import Profile, Referral
 
 
-class PostModelAdmin(admin.ModelAdmin):
+class ProfileModelAdmin(admin.ModelAdmin):
     list_display = ["user", "timestamp", "bio", "profession"]
     list_filter = ["timestamp"]
 
@@ -19,5 +19,16 @@ class PostModelAdmin(admin.ModelAdmin):
         model = Profile
 
 
-admin.site.register(Profile, PostModelAdmin)
+admin.site.register(Profile, ProfileModelAdmin)
+
+
+class ReferralModelAdmin(admin.ModelAdmin):
+    list_display = ["timestamp", "id"]
+    list_filter = ["timestamp"]
+
+    class Meta:
+        model = Referral
+
+
+admin.site.register(Referral, ReferralModelAdmin)
 

@@ -8,5 +8,5 @@ for the app. Using this, you can configure some of the attributes of the applica
 from django.apps import AppConfig
 
 
-class ChartConfig(AppConfig):
+class ProfileConfig(AppConfig):
     name = 'profiles'

@@ -62,12 +62,9 @@ class Profile(models.Model):
 
 
 class Referral(models.Model):
-    referrer = models.ManyToManyField(User, related_name='referrers')
+    referrer = models.OneToOneField(User, on_delete=models.CASCADE)
     referral = models.ManyToManyField(User, related_name='referrals')
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.referrer.username} - {self.referral.username}'
 
 
 @receiver(post_save, sender=User)
