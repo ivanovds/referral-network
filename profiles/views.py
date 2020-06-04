@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -10,10 +10,83 @@ from django.contrib.auth import (
     login,
     logout,
 )
-from .forms import ProfileForm
+from .forms import ProfileForm, UserRegisterForm, LoginForm
 from .models import Profile
-from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, LoginForm
+from referrals.models import Referral
+
+
+def register_view(request):
+    if request.method == 'POST':
+        sign_up_form = UserRegisterForm(request.POST or None)
+        if sign_up_form.is_valid():
+            email = sign_up_form.cleaned_data.get('email')
+            password = sign_up_form.cleaned_data.get('password1')
+            username = (email.lower()).split("@")[0]
+            user = User(username=username, email=email)
+            user.set_password(password)
+            user.save()
+
+            ref_code = request.session.get('ref_code')
+            if ref_code:
+                try:
+                    referrer = Profile.objects.get(ref_code=ref_code)
+                except ObjectDoesNotExist:
+                    messages.info(request, "No referrer with this referral code.")
+                else:
+                    Referral.objects.create(
+                        referrer=referrer.user,
+                        referral=user,
+                    )
+
+            login(request, user)
+            return redirect('/')
+
+    else:
+        sign_up_form = UserRegisterForm()
+        ref_code = request.GET.get('ref', '')
+        if Profile.objects.filter(ref_code=ref_code).exists():
+            request.session['ref_code'] = ref_code
+
+    context = {
+        'sign_up_form': sign_up_form,
+    }
+    return render(request, 'register.html', context)
+
+
+def login_view(request):
+    if request.method == 'POST':
+        log_in_form = LoginForm(request.POST or None)
+        if log_in_form.is_valid():
+            email = log_in_form.cleaned_data.get('email')
+            try:
+                username = User.objects.get(email=email.lower()).username
+            except ObjectDoesNotExist:
+                messages.error(request, "No user with this email.")
+            else:
+                password = log_in_form.cleaned_data.get('password')
+                user = authenticate(username=username, password=password)
+
+                if user is not None:
+                    login(request, user)
+                    return redirect('/')
+                else:
+                    messages.error(request, "No referrer with this referral code.")
+        else:
+            messages.error(request, "Email or password is invalid.")
+    else:
+        log_in_form = LoginForm()
+
+    context = {
+        'log_in_form': log_in_form,
+    }
+
+    return render(request, 'login.html', context)
+
+
+@login_required()
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 
 
 @login_required()
@@ -42,9 +115,6 @@ def profile_list(request):
 @login_required()
 def profile_detail(request, profile_id):
     instance = get_object_or_404(Profile, id=profile_id)
-    # if instance.publish > timezone.now().date():
-    #     if not request.user.is_staff or not request.user.is_superuser:
-    #         raise Http404
     context = {
         "instance": instance,
     }
@@ -61,7 +131,7 @@ def home_view(request):
             instance.user = request.user
             instance.save()
             messages.success(request, "Successfully Created")
-            return HttpResponseRedirect(instance.get_absolute_url())
+            return redirect(instance.get_absolute_url())
     else:
         form = ProfileForm()
 
@@ -69,62 +139,3 @@ def home_view(request):
         "form": form,
     }
     return render(request, "home_view.html", context)
-
-
-def register_view(request):
-    if request.method == 'POST':
-        sign_up_form = UserRegisterForm(request.POST or None)
-        if sign_up_form.is_valid():
-            email = sign_up_form.cleaned_data.get('email')
-            password = sign_up_form.cleaned_data.get('password1')
-            username = (email.lower()).split("@")[0]
-            user = User(username=username, email=email)
-            user.set_password(password)
-            user.save()
-            login(request, user)
-            return redirect('/')
-
-    else:
-        sign_up_form = UserRegisterForm()
-        ref_code = request.GET.get('ref', 'no code')
-        if Profile.objects.filter(ref_code=ref_code).exists():
-            request.session['ref_code'] = ref_code
-
-        print(request.session['ref_code'])
-
-    context = {
-        'sign_up_form': sign_up_form,
-    }
-    return render(request, 'register.html', context)
-
-
-def login_view(request):
-    if request.method == 'POST':
-        log_in_form = LoginForm(request.POST or None)
-        if log_in_form.is_valid():
-            email = log_in_form.cleaned_data.get('email')
-            username = User.objects.get(email=email.lower()).username
-            password = log_in_form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('/')
-            else:
-                #  TODO: invalid login or password message
-                pass
-    else:
-        log_in_form = LoginForm()
-
-        print(request.session['ref_code'])
-
-    context = {
-        'log_in_form': log_in_form,
-    }
-
-    return render(request, 'login.html', context)
-
-
-@login_required()
-def logout_view(request):
-    logout(request)
-    return redirect('/')

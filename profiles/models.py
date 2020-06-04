@@ -61,12 +61,6 @@ class Profile(models.Model):
         ordering = ["-timestamp"]
 
 
-class Referral(models.Model):
-    referrer = models.OneToOneField(User, on_delete=models.CASCADE)
-    referral = models.ManyToManyField(User, related_name='referrals')
-    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-
-
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
