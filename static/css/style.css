@@ -166,7 +166,7 @@ body {
 .account-forms-container label{
     display: none;
 }
-.account-forms-container input{
+.account-forms-container input, .invite-block .copy-invite{
     outline: none;
 	-moz-appearance: none;
     border: 1px inset white;
@@ -182,7 +182,9 @@ body {
     width: 200px;
     padding-bottom: 35px;
 }
-.account-forms-container #log-in-button, .account-forms-container #sign-up-button{
+.account-forms-container #log-in-button,
+.account-forms-container #sign-up-button,
+.invite-block .copy-invite{
     border: 1px outset black;
     color: white;
     font-weight: 700;
@@ -191,10 +193,28 @@ body {
 .account-forms-container #log-in-button{
     background-color: rgb(66,103,178);
 }
-.account-forms-container #sign-up-button{
+.account-forms-container #sign-up-button, .invite-block .copy-invite{
     background-color: rgb(91,145,71);
 }
 /*----------------- Referrals -----------------*/
 .invite-block .invite-text{
     resize: none;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+.invite-block span{
+    font-size: 36px;
+}
+.invite-block, .referral-list{
+    text-align: center;
+    margin-top: 20px;
+}
+.invite-block .copy-invite{
+    max-width: 200px;
+}
+.referral-list p{
+    font-size: 18px;
+}
+.referral-list ul{
+    list-style: circle inside;
 }

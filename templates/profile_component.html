@@ -5,6 +5,7 @@
               <div class="col-auto author">{{ profile.user.username }}</div>
             </div>
             <div class="row justify-content-start profile-info">
+                <div class="col-12"><span>Email:</span> {{ profile.user.email}}</div>
                 {% if  profile.profession %}
                     <div class="col-12"><span>Profession:</span> {{ profile.get_profession_display }}</div>
                 {% endif %}
