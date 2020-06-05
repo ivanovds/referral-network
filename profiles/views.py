@@ -20,32 +20,38 @@ def register_view(request):
         sign_up_form = UserRegisterForm(request.POST or None)
         if sign_up_form.is_valid():
             email = sign_up_form.cleaned_data.get('email')
-            password = sign_up_form.cleaned_data.get('password1')
-            username = (email.lower()).split("@")[0]
-            user = User(username=username, email=email)
-            user.set_password(password)
-            user.save()
+            if User.objects.filter(email=email).exists():
+                messages.error(request, "User with this email already exists.")
+            else:
+                password = sign_up_form.cleaned_data.get('password1')
+                username = (email.lower()).split("@")[0]
+                user = User(username=username, email=email)
+                user.set_password(password)
+                user.save()
 
-            ref_code = request.session.get('ref_code')
-            if ref_code:
-                try:
-                    referrer = Profile.objects.get(ref_code=ref_code)
-                except ObjectDoesNotExist:
-                    messages.info(request, "No referrer with this referral code.")
-                else:
-                    Referral.objects.create(
-                        referrer=referrer.user,
-                        referral=user,
-                    )
+                ref_code = request.session.get('ref_code')
+                if ref_code:
+                    try:
+                        referrer = Profile.objects.get(ref_code=ref_code)
+                    except ObjectDoesNotExist:
+                        messages.info(request, "No referrer with this referral code.")
+                    else:
+                        Referral.objects.create(
+                            referrer=referrer.user,
+                            referral=user,
+                        )
 
-            login(request, user)
-            return redirect('/')
+                login(request, user)
+                return redirect('/')
 
     else:
         sign_up_form = UserRegisterForm()
         ref_code = request.GET.get('ref', '')
-        if Profile.objects.filter(ref_code=ref_code).exists():
-            request.session['ref_code'] = ref_code
+        if ref_code:
+            if Profile.objects.filter(ref_code=ref_code).exists():
+                request.session['ref_code'] = ref_code
+            else:
+                messages.info(request, "No referrer with this referral link!")
 
     context = {
         'sign_up_form': sign_up_form,
@@ -68,11 +74,9 @@ def login_view(request):
 
                 if user is not None:
                     login(request, user)
-                    return redirect('/')
+                    return redirect(request.GET.get('next'))
                 else:
-                    messages.error(request, "No referrer with this referral code.")
-        else:
-            messages.error(request, "Email or password is invalid.")
+                    messages.error(request, "Password is invalid.")
     else:
         log_in_form = LoginForm()
 

@@ -7,6 +7,7 @@ a form class’s fields map to HTML form <input> elements.
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django import forms
 from .models import Profile
 
@@ -23,16 +24,6 @@ class ProfileForm(forms.ModelForm):
                                          'wrap': 'hard',
                                          'placeholder': 'Tell people something interesting about yourself!'}),
         }
-
-    # def clean_title(self):
-    #     """Validates title field"""
-    #     data = self.cleaned_data['title']
-    #     if :
-    #         raise forms.ValidationError("")
-    #
-    #     # Always return a value to use as the new cleaned data, even if
-    #     # this method didn't change it.
-    #     return data
 
 
 class UserRegisterForm(UserCreationForm):

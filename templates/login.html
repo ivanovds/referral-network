@@ -13,7 +13,16 @@
                           {{ log_in_form|safe }}
                           <input type='submit' id="log-in-button" value="Log in">
                       </form>
+                      {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                      {% endif %}
                   </div>
+                {% else %}
+                    <p>You are already logged in.</p>
                 {% endif %}
             </div>
         </div>
