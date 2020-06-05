@@ -12,21 +12,14 @@
           <div class="profile-preview-block">
               <div class="row justify-content-between profile-preview-txt">
                   <div class="col-auto author">{{ obj.user.username }}</div>
+                  {% if  obj.profession %}
+                  <div class="col-auto author">{{ obj.get_profession_display }}</div>
+                  {%  endif %}
               </div>
-              <div class="profile-preview-txt">{{ obj.content|linebreaks|truncatechars:320 }}</div>
-
-              {{ obj.bio }}
+              <div class="profile-preview-txt">{{ obj.bio|linebreaks|truncatechars:320 }}</div>
               <a href='{{ obj.get_absolute_url }}'><img src='http://127.0.0.1:8000/media/{{ obj.avatar }}' class='profile-picture' /></a>
 
-
-
-                  <div class="profile-btn-block">
-
-                  </div>
-              </div>
-
-
-
+          </div>
       </div>
     </div>
 

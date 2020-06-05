@@ -4,21 +4,25 @@
             <div class="row justify-content-start profile-preview-txt">
               <div class="col-auto author">{{ profile.user.username }}</div>
             </div>
+            <div class="row justify-content-start profile-info">
+                {% if  profile.profession %}
+                    <div class="col-12"><span>Profession:</span> {{ profile.get_profession_display }}</div>
+                {% endif %}
+                {% if  profile.bio %}
+                    <div class="col-12 "><p><span>About me:</span> {{ profile.bio|linebreaks }}</p></div>
+                {% endif %}
+             </div>
+                <hr>
+                <p>Avatar:</p> <br>
                 <p class="p_img"><img src='http://127.0.0.1:8000/media/{{ profile.avatar }}' class='img-responsive'/></p>
-                <hr>
-            {% for img in images %}
-                <p class="p_img"><img src='http://127.0.0.1:8000/media/{{ img.image }}' class='img-responsive'/></p>
-                <hr>
-            {% endfor %}
 
-        <div class="row justify-content-start profile-info">
-            {% if  instance.profession %}
-                <div class="col-12"><span>Profession:</span> {{ instance.profession }}</div>
+            {% if images %}
+                <p>Gallery:</p>
             {% endif %}
-            {% if  instance.bio %}
-                <div class="col-12 "><p><span>About me:</span> {{ instance.bio|linebreaks }}</p></div>
-            {% endif %}
-        </div>
+            {% for img in images %}
+                <hr>
+                <p class="p_img"><img src='http://127.0.0.1:8000/media/{{ img.image }}' class='img-responsive'/></p>
+            {% endfor %}
         </div>
     </div>
 </div>

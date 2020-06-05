@@ -124,7 +124,7 @@ def profile_detail(request, profile_id):
 
 
 @login_required()
-def home_view(request):
+def my_profile(request):
     profile = get_object_or_404(Profile, id=request.user.id)
     form = ProfileForm(request.POST or None, request.FILES or None, instance=profile)
 
@@ -135,7 +135,7 @@ def home_view(request):
                 profile.avatar = images[-1]
                 profile.save(update_fields=["avatar"])
 
-                for img in images[:-1]:
+                for img in images:
                     profile_img = ProfileImage(image=img, profile=profile)
                     profile_img.save()
 
@@ -146,7 +146,7 @@ def home_view(request):
             messages.error(request, "Profile was not updated.")
             return redirect('/')
 
-    images = ProfileImage.objects.filter(profile=profile)[::-1]
+    images = ProfileImage.objects.filter(profile=profile)[::-1][1:]
 
     context = {
         'form': form,
@@ -154,4 +154,4 @@ def home_view(request):
         'profile': profile,
     }
 
-    return render(request, "home_view.html", context)
+    return render(request, "my_profile.html", context)
