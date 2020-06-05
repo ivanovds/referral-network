@@ -33,7 +33,7 @@ def profile_list(request):
 @login_required()
 def profile_detail(request, profile_id):
     profile = get_object_or_404(Profile, id=profile_id)
-    images = ProfileImage.objects.filter(profile=profile)[::-1]
+    images = ProfileImage.objects.filter(profile=profile)[::-1][1:]
     context = {
         "profile": profile,
         'images': images,
