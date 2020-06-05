@@ -11,10 +11,8 @@ from django.contrib.auth import (
     logout,
 )
 from .forms import ProfileForm, UserRegisterForm, LoginForm
-from .models import Profile
+from .models import Profile, ProfileImage
 from referrals.models import Referral
-
-from django.views.generic.edit import FormView
 
 
 def register_view(request):
@@ -116,9 +114,11 @@ def profile_list(request):
 
 @login_required()
 def profile_detail(request, profile_id):
-    instance = get_object_or_404(Profile, id=profile_id)
+    profile = get_object_or_404(Profile, id=profile_id)
+    images = ProfileImage.objects.filter(profile=profile)[::-1]
     context = {
-        "instance": instance,
+        "profile": profile,
+        'images': images,
     }
     return render(request, "profile_detail.html", context)
 
@@ -129,21 +129,29 @@ def home_view(request):
     form = ProfileForm(request.POST or None, request.FILES or None, instance=profile)
 
     if request.method == 'POST':
-        files = request.FILES.getlist('file_field')
         if form.is_valid():
-            profile = form.save()
-            print(len(files))
-            # for f in files:
-            #     print(f)
+            images = request.FILES.getlist('image')
+            if images:
+                profile.avatar = images[-1]
+                profile.save(update_fields=["avatar"])
 
+                for img in images[:-1]:
+                    profile_img = ProfileImage(image=img, profile=profile)
+                    profile_img.save()
+
+            form.save()
             messages.success(request, "Successfully Updated.")
             return redirect('/')
         else:
             messages.error(request, "Profile was not updated.")
             return redirect('/')
 
+    images = ProfileImage.objects.filter(profile=profile)[::-1]
+
     context = {
-        "form": form,
-        "instance": profile,
+        'form': form,
+        'images': images,
+        'profile': profile,
     }
+
     return render(request, "home_view.html", context)

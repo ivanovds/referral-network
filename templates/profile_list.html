@@ -14,9 +14,10 @@
                   <div class="col-auto author">{{ obj.user.username }}</div>
               </div>
               <div class="profile-preview-txt">{{ obj.content|linebreaks|truncatechars:320 }}</div>
-              {% if obj.image %}
-              <a href='{{ obj.get_absolute_url }}'><img src='{{ obj.image.url }}' class='profile-picture' /></a>
-              {% endif %}
+
+              {{ obj.bio }}
+              <a href='{{ obj.get_absolute_url }}'><img src='http://127.0.0.1:8000/media/{{ obj.avatar }}' class='profile-picture' /></a>
+
 
 
                   <div class="profile-btn-block">

@@ -8,11 +8,11 @@ and get a feel for whether you have the right data.
 
 
 from django.contrib import admin
-from .models import Profile
+from .models import Profile, ProfileImage
 
 
 class ProfileModelAdmin(admin.ModelAdmin):
-    list_display = ["user", "timestamp", "bio", "profession"]
+    list_display = ["user", "timestamp", "bio", "profession", "avatar"]
     list_filter = ["timestamp"]
 
     class Meta:
@@ -20,3 +20,13 @@ class ProfileModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Profile, ProfileModelAdmin)
+
+
+class ProfileImageModelAdmin(admin.ModelAdmin):
+    list_display = ["profile", "image"]
+
+    class Meta:
+        model = ProfileImage
+
+
+admin.site.register(ProfileImage, ProfileImageModelAdmin)

@@ -12,7 +12,7 @@ from .models import Profile
 
 
 class ProfileForm(forms.ModelForm):
-    image = forms.ImageField(required=False, widget=forms.FileInput)
+    image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'multiple': True}))
 
     class Meta:
         """Provides metadata to the ModelForm class"""

@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 class Referral(models.Model):
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     referrer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='referrers')
-    referral = models.ForeignKey(User, on_delete=models.CASCADE, related_name='referrals')
+    referral = models.OneToOneField(User, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = (('referrer', 'referral'),)

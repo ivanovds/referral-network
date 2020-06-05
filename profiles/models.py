@@ -13,7 +13,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-def upload_location(instance, filename):
+def upload_avatar(instance, filename):
     return '/'.join(['profiles', str(instance.user.id), filename])
 
 
@@ -35,6 +35,10 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+    avatar = models.ImageField(upload_to=upload_avatar,
+                               null=False, blank=False,
+                               default='default_avatar.png',
+                               )
     profession = models.CharField(
         max_length=2,
         choices=PROFESSION_CHOICES,
@@ -42,11 +46,6 @@ class Profile(models.Model):
         blank=True
     )
     bio = models.CharField(max_length=500, blank=True)
-    image = models.ImageField(upload_to=upload_location,
-                              null=True, blank=True,
-                              default='default_img.png',
-                              )
-
     ref_code = models.TextField(max_length=20, null=False, unique=True)
 
     def get_absolute_url(self):
@@ -59,12 +58,24 @@ class Profile(models.Model):
         ordering = ["-timestamp"]
 
 
+def upload_location(instance, filename):
+    return '/'.join(['profiles', str(instance.profile.user.id), filename])
+
+
+class ProfileImage(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_images")
+    image = models.ImageField(upload_to=upload_location,
+                              null=True, blank=True,
+                              )
+
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         ref_code = generate_ref_code()
         while Profile.objects.filter(ref_code=ref_code).exists():
             ref_code = generate_ref_code()
+
         Profile.objects.create(
             user=instance,
             ref_code=ref_code,
@@ -79,5 +90,3 @@ def save_user_profile(sender, instance, **kwargs):
 def generate_ref_code(ref_code_length=15):
     lettersAndDigits = string.ascii_lowercase + string.digits
     return ''.join(random.choice(lettersAndDigits) for i in range(ref_code_length))
-
-
