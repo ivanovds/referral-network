@@ -92,12 +92,6 @@ body {
 .profile-form-container .profile-form .label_img:hover{
     cursor: pointer;
 }
-.profile-form-container  .profile-form .error{
-    color: crimson;
-}
-.profile-form-container  .profile-form .success{
-    color: forestgreen;
-}
 /*List of profiles*/
 .profile-preview-block{
     border: 1px solid rgba(110, 112, 115, 0.25);
@@ -196,7 +190,7 @@ body {
 .account-forms-container #sign-up-button, .invite-block .copy-invite{
     background-color: rgb(91,145,71);
 }
-/*----------------- Referrals -----------------*/
+/* Referrals */
 .invite-block .invite-text{
     resize: none;
     border-radius: 3px;
@@ -217,4 +211,20 @@ body {
 }
 .referral-list ul{
     list-style: circle inside;
+}
+/* Messages*/
+.messages .error{
+    color: crimson;
+}
+.messages .success{
+    color: forestgreen;
+}
+.messages .info{
+    color: #ffd800;
+}
+.messages .error,
+.messages .success,
+.messages .info{
+    background-color: white;
+    border-radius: 2px;
 }

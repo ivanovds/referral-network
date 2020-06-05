@@ -18,13 +18,12 @@
     <list default="true" id="cee86654-a176-42d6-808e-77d1dfba2424" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profiles/3/IMG_4527.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/profiles/3/IMG_4528.JPG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/profiles/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/profiles/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/referrals.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/referrals.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/referral_network/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/referral_network/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/referral_network/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/referral_network/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +66,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -75,17 +74,17 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Work\test-tasks\referral_network" />
+      <recent name="D:\Work\test-tasks\referral_network\templates" />
+      <recent name="D:\Users\Danya\Work\REST_API\project-container\accounts" />
+      <recent name="D:\Users\Danya\Work\REST_API\project-container\media" />
+      <recent name="D:\Users\Danya\Work\REST_API\project-container\posts" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\static\js" />
       <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\static\css" />
       <recent name="D:\Users\Danya\Work\currency-rate-history\project-container\static" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Work\test-tasks\referral_network\templates" />
-      <recent name="D:\Work\test-tasks\referral_network" />
-      <recent name="D:\Users\Danya\Work\REST_API\project-container\accounts" />
-      <recent name="D:\Users\Danya\Work\REST_API\project-container\media" />
-      <recent name="D:\Users\Danya\Work\REST_API\project-container\posts" />
     </key>
   </component>
   <component name="RunManager">
@@ -156,7 +155,7 @@
       <workItem from="1591221939603" duration="6910000" />
       <workItem from="1591255248717" duration="4326000" />
       <workItem from="1591263446942" duration="57816000" />
-      <workItem from="1591345353441" duration="12070000" />
+      <workItem from="1591345353441" duration="14046000" />
     </task>
     <servers />
   </component>
@@ -221,10 +220,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="719" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1586780709212" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591329107050">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591358866604">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591329107050" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591358866604" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1591322983478">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -253,10 +252,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587200934998" />
-    <state x="656" y="118" width="737" height="804" key="find.popup" timestamp="1591350566820">
+    <state x="656" y="118" width="737" height="804" key="find.popup" timestamp="1591359181027">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="118" width="737" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591350566820" />
+    <state x="656" y="118" width="737" height="804" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591359181027" />
     <state x="738" y="233" key="git4idea.branch.GitSmartOperationDialog" timestamp="1582728577427">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
