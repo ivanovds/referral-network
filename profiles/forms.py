@@ -20,6 +20,7 @@ class ProfileForm(forms.ModelForm):
         fields = ('profession', 'bio', 'image')
         widgets = {
             'bio': forms.Textarea(attrs={'rows': 4,
+                                         'wrap': 'hard',
                                          'placeholder': 'Tell people something interesting about yourself!'}),
         }
 

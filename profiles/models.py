@@ -41,15 +41,11 @@ class Profile(models.Model):
         null=True,
         blank=True
     )
-    bio = models.TextField(max_length=500, blank=True)
+    bio = models.CharField(max_length=500, blank=True)
     image = models.ImageField(upload_to=upload_location,
                               null=True, blank=True,
-                              width_field="width_field",
-                              height_field="height_field",
                               default='default_img.png',
                               )
-    width_field = models.IntegerField(default=0)
-    height_field = models.IntegerField(default=0)
 
     ref_code = models.TextField(max_length=20, null=False, unique=True)
 

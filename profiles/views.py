@@ -14,6 +14,8 @@ from .forms import ProfileForm, UserRegisterForm, LoginForm
 from .models import Profile
 from referrals.models import Referral
 
+from django.views.generic.edit import FormView
+
 
 def register_view(request):
     if request.method == 'POST':
@@ -124,14 +126,21 @@ def profile_detail(request, profile_id):
 @login_required()
 def home_view(request):
     profile = get_object_or_404(Profile, id=request.user.id)
-
     form = ProfileForm(request.POST or None, request.FILES or None, instance=profile)
 
-    if form.is_valid():
-        profile = form.save()
+    if request.method == 'POST':
+        files = request.FILES.getlist('file_field')
+        if form.is_valid():
+            profile = form.save()
+            print(len(files))
+            # for f in files:
+            #     print(f)
 
-        messages.success(request, "Successfully Updated")
-        return redirect('/')
+            messages.success(request, "Successfully Updated.")
+            return redirect('/')
+        else:
+            messages.error(request, "Profile was not updated.")
+            return redirect('/')
 
     context = {
         "form": form,
