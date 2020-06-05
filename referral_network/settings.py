@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'accounts',
     'profiles',
     'referrals',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
