@@ -22,6 +22,7 @@ Every one can see the profile page of other users but only the owner can edit.
 
 ## Technology stack
 * Django Framework 3.0.7
+* Bootstrap 4.4.1
 * django-cleanup 4.0.0
 * Pillow==7.1.2
 
@@ -59,13 +60,15 @@ to install by command:
 pip install -r requirements.txt
 ```
 
-* Add Django Server in Run/Debug Configuration.
-
 * Now you can run your Django Server by command:
 ```bash
 py manage.py runserver
 ```
-and visit http://127.0.0.1:8000/
+
+or add Django Server in Run/Debug Configuration
+and press run button.
+
+* visit http://127.0.0.1:8000/
 
 ## Usage
 
