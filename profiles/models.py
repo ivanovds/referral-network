@@ -7,17 +7,20 @@ Generally, each model maps to a single database table.
 
 from django.db import models
 from django.contrib.auth.models import User
-import random
-import string
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 
 def upload_avatar(instance, filename):
+    """Returns path to avatar in media directory."""
     return '/'.join(['profiles', str(instance.user.id), filename])
 
 
 class Profile(models.Model):
+    """User profile.
+
+    Using one-to-one communication with a user model.
+    Stores additional user information.
+    Stores only current avatar.
+    """
     BLANK = ''
     STUDENT = 'ST'
     PROGRAMMER = 'PR'
@@ -32,19 +35,18 @@ class Profile(models.Model):
         (ML_ENGINEER, 'Machine Learning engineer'),
         (OTHER, 'Other'),
     ]
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-    avatar = models.ImageField(upload_to=upload_avatar,
-                               null=False, blank=False,
-                               default='default_avatar.png',
-                               )
     profession = models.CharField(
         max_length=2,
         choices=PROFESSION_CHOICES,
         null=True,
         blank=True
     )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+    avatar = models.ImageField(upload_to=upload_avatar,
+                               null=False, blank=False,
+                               default='default_avatar.png',
+                               )
     bio = models.CharField(max_length=500, blank=True)
     ref_code = models.TextField(max_length=20, null=False, unique=True)
 
@@ -58,35 +60,14 @@ class Profile(models.Model):
         ordering = ["-timestamp"]
 
 
-def upload_location(instance, filename):
+def upload_profile_images(instance, filename):
+    """Returns path to profile image in media directory."""
     return '/'.join(['profiles', str(instance.profile.user.id), filename])
 
 
 class ProfileImage(models.Model):
+    """Stores not only current avatar but all added avatars."""
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="profile_images")
-    image = models.ImageField(upload_to=upload_location,
+    image = models.ImageField(upload_to=upload_profile_images,
                               null=True, blank=True,
                               )
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        ref_code = generate_ref_code()
-        while Profile.objects.filter(ref_code=ref_code).exists():
-            ref_code = generate_ref_code()
-
-        Profile.objects.create(
-            user=instance,
-            ref_code=ref_code,
-        )
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-
-
-def generate_ref_code(ref_code_length=15):
-    lettersAndDigits = string.ascii_lowercase + string.digits
-    return ''.join(random.choice(lettersAndDigits) for i in range(ref_code_length))

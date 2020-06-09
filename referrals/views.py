@@ -1,12 +1,11 @@
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Referral
 
 
 @login_required()
 def referral_view(request):
-    ref_list = Referral.objects.filter(referrer=request.user)
+    """Displays links to all referral of current user and their amount."""
+    ref_list = request.user.user_referrers.all()
     ref_count = ref_list.count()
     context = {
         'ref_count': ref_count,

@@ -14,6 +14,15 @@ from profiles.models import Profile
 
 
 def register_view(request):
+    """Register view for creating new user.
+
+    Requires unique email.
+    Password should satisfy standard Django password validators.
+    Transforms entered email to username (username - first part of email up to "@").
+
+    GET: Writes ref_code into request.session if there is a "?ref=<ref_code>" in the URl.
+    POST: If there is a ref_code in request.session and it is valid, saves a Referral object.
+    """
     if request.method == 'POST':
         sign_up_form = UserRegisterForm(request.POST or None)
         if sign_up_form.is_valid():
@@ -58,6 +67,11 @@ def register_view(request):
 
 
 def login_view(request):
+    """User authentication.
+
+    Requires email and password to be entered,
+    but uses username and password for authentication.
+    """
     if request.method == 'POST':
         log_in_form = LoginForm(request.POST or None)
         if log_in_form.is_valid():

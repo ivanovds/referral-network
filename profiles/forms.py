@@ -13,7 +13,6 @@ class ProfileForm(forms.ModelForm):
     image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'multiple': True}))
 
     class Meta:
-        """Provides metadata to the ModelForm class"""
         model = Profile
         fields = ('profession', 'bio', 'image')
         widgets = {

@@ -10,9 +10,11 @@ from django.contrib.auth.models import User
 
 
 class Referral(models.Model):
-    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-    referrer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='referrers')
-    referral = models.OneToOneField(User, on_delete=models.CASCADE)
+    """Stores referrers and referrals.
 
-    class Meta:
-        unique_together = (('referrer', 'referral'),)
+    Every user can be a referrer multiple times.
+    Referral - unique field. Every user can be referral only once.
+    """
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+    referrer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_referrers')
+    referral = models.OneToOneField(User, on_delete=models.CASCADE)

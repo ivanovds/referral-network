@@ -9,6 +9,7 @@ from .models import Profile, ProfileImage
 
 @login_required()
 def profile_list(request):
+    """List of all existing profiles except the profile of current user."""
     queryset_list = Profile.objects.filter(~Q(user=request.user))
 
     paginator = Paginator(queryset_list, 25)  # Show 25 profiles per page
@@ -32,8 +33,13 @@ def profile_list(request):
 
 @login_required()
 def profile_detail(request, profile_id):
+    """View with all detail profile information.
+
+    Returns 404 error if profile does not exist.
+    Displays profile images in order from last to first added.
+    """
     profile = get_object_or_404(Profile, id=profile_id)
-    images = ProfileImage.objects.filter(profile=profile)[::-1][1:]
+    images = ProfileImage.objects.filter(profile=profile)[::-1][1:]  # [1:] - exclude avatar
     context = {
         "profile": profile,
         'images': images,
@@ -43,7 +49,14 @@ def profile_detail(request, profile_id):
 
 @login_required()
 def my_profile(request):
-    profile = get_object_or_404(Profile, id=request.user.id)
+    """View with current user profile.
+
+    Allowed methods: GET, POST.
+    GET: displays avatar, all previous avatars, profile information, form to update profile.
+    POST: saves only updated fields. Allows to add multiple photos, saves the last one as an avatar to
+    Profile model`s field "avatar". Saves all added photos to ProfileImage model.
+    """
+    profile = get_object_or_404(Profile, id=request.user.profile.id)
     form = ProfileForm(request.POST or None, request.FILES or None, instance=profile)
 
     if request.method == 'POST':
@@ -54,8 +67,7 @@ def my_profile(request):
                 profile.save(update_fields=["avatar"])
 
                 for img in images:
-                    profile_img = ProfileImage(image=img, profile=profile)
-                    profile_img.save()
+                    ProfileImage.objects.create(image=img, profile=profile)
 
             form.save()
             messages.success(request, "Successfully Updated.")
@@ -64,7 +76,7 @@ def my_profile(request):
             messages.error(request, "Profile was not updated.")
             return redirect('/')
 
-    images = ProfileImage.objects.filter(profile=profile)[::-1][1:]
+    images = profile.profile_images.all()[::-1][1:]  # [1:] - exclude avatar
 
     context = {
         'form': form,

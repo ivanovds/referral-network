@@ -10,3 +10,7 @@ from django.apps import AppConfig
 
 class ProfileConfig(AppConfig):
     name = 'profiles'
+
+    def ready(self):
+        """Overriding this method to perform initialization task - registering signals."""
+        import profiles.signals

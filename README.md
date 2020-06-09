@@ -22,7 +22,7 @@ Every one can see the profile page of other users but only the owner can edit.
 
 ## Technology stack
 * Django Framework 3.0.7
-* Bootstrap 4.4.1
+* Bootstrap 4.5.0.
 * django-cleanup 4.0.0
 * Pillow==7.1.2
 
