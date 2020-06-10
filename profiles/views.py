@@ -39,7 +39,7 @@ def profile_detail(request, profile_id):
     Displays profile images in order from last to first added.
     """
     profile = get_object_or_404(Profile, id=profile_id)
-    images = ProfileImage.objects.filter(profile=profile)[::-1][1:]  # [1:] - exclude avatar
+    images = ProfileImage.objects.select_related('profile').filter(profile=profile)[::-1][1:]  # [1:] - exclude avatar
     context = {
         "profile": profile,
         'images': images,
